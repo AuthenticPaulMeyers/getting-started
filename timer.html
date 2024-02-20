@@ -28,12 +28,9 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			background: .input-seconds;
 			border-radius: 25px;
 			padding: 10px 15px;
 			flex-wrap: wrap;
-
-
 		}
 		.input-hours,
 		.input-minutes,
@@ -61,18 +58,20 @@
 			border-radius: 25px;
 			width: 70px;
 			transition: .2s ease all;
+			cursor: pointer;
 		}
 
 		.time-container{
 			background: #f4f4f4;
 			border: none;
 			outline: none;
-			padding: 10px;
+			padding: 20px;
 			width: auto;
 			height: auto;
 			margin-top: 20px;
 			box-shadow: 0 1px 15px 1px rgba(19, 19, 19, 0.1);
 			margin-bottom: 40px;
+			border-radius: 80px ;
 
 		}
 
@@ -100,7 +99,7 @@
 			<input type="number" class="input-hours" min="0" max="23" placeholder="Hours">
 			<input type="number" class="input-minutes" min="0" max="60" placeholder="Minutes">
 			<input type="number" class="input-seconds" min="0" max="60" placeholder="Seconds">
-			<button class="start-button btn">Start</button>
+			<button class="start-button btn">Set</button>
 		</div>
 		<div class="time-container">
 			<div class="container">
@@ -140,7 +139,7 @@
 		resetButtonEl.disabled = true;
 		playButtonEl.disabled = true;
 
-		// change styles 
+		// change styles when the button is disabled to show freeze effect
 
 		if(startButtonEl.disabled){
 			startButtonEl.style.background = '#cccccc';
@@ -150,16 +149,15 @@
 			startButtonEl.disabled = true;
 		}
 
-		document.querySelectorAll('input').forEach(input =>{
-			input.addEventListener('keyup', () =>{
+		// Activate the start button on input key up
+
+		document.querySelectorAll('input').forEach(input => {
+			input.addEventListener('keyup', () => {
 				startButtonEl.disabled = false;
-				resetButtonEl.disabled = false;
-				playButtonEl.disabled = false;
 				startButtonEl.style.background = 'rgb(19, 19, 19)';
-				playButtonEl.style.background = 'rgb(19, 19, 19)';
-				resetButtonEl.style.background = 'rgb(19, 19, 19)';
+
 			});
-		})
+		});
 
 		// Take the input values and save them in a variable
 
@@ -173,6 +171,7 @@
 			 minutes = inputMinutesEl.value;
 			 seconds = inputSecondsEl.value;
 
+			 
 			// add zero
 			hours = addZero(hours);
 			minutes = addZero(minutes);
@@ -187,8 +186,17 @@
 			inputMinutesEl.value = '';
 			inputSecondsEl.value = '';
 
+			// Disable start button after input
 			startButtonEl.disabled = true;
 			startButtonEl.style.background = '#cccccc';
+
+			// Enable Reset and Play buttons
+			resetButtonEl.disabled = false;
+			playButtonEl.disabled = false;
+
+			playButtonEl.style.background = 'rgb(19, 19, 19)';
+			resetButtonEl.style.background = 'rgb(19, 19, 19)';
+
 		});
 
 		let isCounting = false;
@@ -196,12 +204,15 @@
 
 		// Start the watch button clicked
 		playButtonEl.addEventListener('click', () => {
-
-			seconds = Number(seconds);
-			minutes = Number(minutes);
-			hours = Number(hours);
 			if(!isCounting){
 				intervalId = setInterval(function(){
+
+				// After adding zero to the numbers they are converted to string then we need to Convert the string back to numbers
+		
+				seconds = Number(seconds);
+				minutes = Number(minutes);
+				hours = Number(hours);
+
 					if (hours === 0 && (minutes === 0 && seconds === 0))	{
 						hours = 0;
 						minutes = 0;
@@ -222,6 +233,10 @@
 						hours --;
 					}
 
+					seconds = addZero(seconds);
+					minutes = addZero(minutes);
+					hours = addZero(hours);
+
 					countSecondsEl.textContent = seconds;
 					countMinutesEl.textContent = minutes;
 					countHoursEl.textContent = hours;
@@ -240,8 +255,14 @@
 
 			}
 
+			
 		});
 
+		// Disable reset button
+		if(playButtonEl.innerHTML === 'Pause'){
+			resetButtonEl.disabled = true;
+			resetButtonEl.style.background = '#cccccc';
+		}
 
 		// reset watch button clicked
 		resetButtonEl.addEventListener('click', () => {
@@ -266,6 +287,7 @@
 			playButtonEl.disabled = true;
 			playButtonEl.style.background = '#cccccc';
 			resetButtonEl.style.background = '#cccccc';
+			playButtonEl.innerHTML = 'Play';
 
 		});
 
