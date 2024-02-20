@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>DOM Basics</title>
+</head>
+
+<style type="text/css">
+	
+
+
+	body{
+		padding: 50px;
+		font-family: arial;
+		background: lightseagreen;
+
+	}
+
+	.sub-button{
+		background: rgb(19, 19, 19);
+		border: none; outline: none;
+		border-radius: 50px;
+		font-size: 1.2rem;
+		color: #eeeeee;
+		padding: 10px 15px;
+		cursor: pointer;
+		transition: all .2s;
+		margin: 0 auto;
+
+	}
+
+	p{
+		font-size: 2rem;
+		color:white;
+	}
+
+	.cost-input{
+		height: 25px;
+		padding: 8px;
+		border: none;
+		outline:none;
+		font-size: 1.2rem;
+		color: #000;
+	}
+
+	.calculate-button{
+		font-size: 1.2rem;
+		padding: 10px 15px;
+		border: none;
+		outline: none;
+		background: #000;
+		color: #fff;
+	}
+
+	ol li{
+		font-size: 1.2rem;
+		color: white;
+
+	}
+</style>
+<body>
+
+		<!-- Number one : Youtube subscribe button-->
+	<p>YouTube Subscribe Button</p>
+	<button class="js-subscribe-btn sub-button">Subscribe</button>
+
+
+	<hr>
+	<!-- Number two: counter calculator -->
+	<p>Cost calculator</p>
+	<input type = "text" class="cost-input" placeholder="Enter cost of order">
+	<button class="calculate-button">Calculate</button>
+	<p class="total-cost">Total Cost: <span	class="show-total-cost"></span></p>
+
+		<!-- Number three: To do list -->
+	<hr>	
+	<p>To Do List</p>
+	<input type="text" placeholder="Add task" class="input-task cost-input" ><button class="add-btn calculate-button">Add</button>
+	<ol class="to-do-list"></ol>
+
+
+<script type="text/javascript">
+
+	// Basic to do list
+	const toDoList = [];
+	const addTaskBtn = document.querySelector('.add-btn');
+	const addToDoHTML = document.querySelector('.to-do-list');
+
+
+	function appendDataToHTML (){
+		let listHTML = '';
+
+		for(let i = 0; i < toDoList.length; i++){
+
+			const list = toDoList[i];
+			const html = `<li>${list}</li>`
+			listHTML += html;
+		}
+		
+			addToDoHTML.innerHTML = listHTML;
+	}
+
+
+	addTaskBtn.addEventListener('click', () => {
+		const inputElement = document.querySelector('.input-task');
+		let task = inputElement.value;
+
+		toDoList.push(task);
+
+		console.log(toDoList);
+		inputElement.value = '';
+		appendDataToHTML();
+
+	});
+
+	
+
+	
+
+
+		//variables for the calculator button
+	let costElement = document.querySelector('.cost-input');
+	let buttonEl = document.querySelector('.calculate-button');
+	let totalElement = document.querySelector('.show-total-cost');
+
+		// add click event to the button
+	buttonEl.addEventListener('click', () =>{
+		let cost = Number(costElement.value);
+		if(cost	< 40){
+			cost += 10;
+		}
+
+		totalElement.textContent = cost;
+		costElement.value = '';
+	});
+
+	// variables for the youtube button
+			const buttonElement = document.querySelector('.js-subscribe-btn');
+
+
+				buttonElement.addEventListener('click', ()=>{
+					if(buttonElement.innerHTML ==='Subscribe'){
+						buttonElement.innerHTML = 'Subscribed';
+						buttonElement.style.color = 'rgb(19, 19, 19)'
+						buttonElement.style.background = '#eeeeee';
+					}else{
+						buttonElement.innerHTML = 'Subscribe';
+						buttonElement.style.color = '#eeeeee'
+						buttonElement.style.background = 'rgb(19, 19, 19';
+
+					}
+				});
+
+
+
+
+
+</script>
+</body>
+</html>

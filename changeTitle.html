@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>App</title>
+</head>
+<style>
+	
+
+	*{
+		margin: 0;
+		padding: 0;
+		outline: none;
+		border: none;
+		font-family: arial;
+
+	}
+
+	body{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 50px;
+		flex-direction: column;
+	}
+
+	.message-container{
+		position: relative;
+		width: auto;
+		height: 300px;
+		border-radius: 10px;
+	}
+
+	.message-box{
+		text-align: center;
+		background: black;
+		border-radius: 5px;
+		padding: 8px 12px;
+		color: #fff;
+		margin: 10px 15px;
+		width: 40%;
+		font-size: 1.3rem;
+
+
+	}
+
+	.message-count{
+		position: absolute;
+		top: 3px;
+		right: 125px;
+		background: red;
+		padding: 6px 10px;
+		border-radius: 50%;
+		font-size: 1.1rem;
+		color: #fff;
+		outline: none;
+		border: none;
+
+	}
+
+	.btn{
+		padding: 10px 13px;
+		color: #fff;
+		cursor: pointer;
+		font-size: 1.1rem;
+		background: green;
+		border-radius: 5px;
+	}
+</style>
+<body>
+
+
+
+	<div class="message-container">
+		<div class="message-box">Messages</div>
+		<span class="message-count">0</span>
+		<button class="btn" onclick="
+		addMessages();
+	">Add Message</button>
+
+	<button class="btn" onclick="
+		removeMessages();
+	">Remove Message</button>
+	</div>
+
+	
+
+
+
+<script type="text/javascript">
+	
+
+	// display notification number on the title bar to shoe number of messages available 
+
+	let messages = 0;
+	let counter = document.querySelector('.message-count');
+
+	function addMessages(){
+		if(messages >= 0)
+		{
+			messages = messages + 1;
+			document.title = `New Messages(${messages})`;
+			// alert(`You have (${messages}) New Messages`);
+
+		}else{
+			document.title = 'App';
+		}
+		setInterval(function(){
+			validateCountTitle();
+		}, 1000);
+
+	}
+	function removeMessages(){
+		if(messages === 0){
+			document.title = 'App';
+			messages = 0;
+		}else{
+			messages = messages - 1;
+		}
+
+		setInterval(function(){
+			validateCountTitle();
+		}, 2000);
+	}
+
+	function validateCountTitle(){
+		if(messages > 0){
+
+				document.title = `New Messages(${messages})`;	
+
+		}else{
+			setInterval(function(){
+				document.title = 'App';			
+			}, 2000);
+		}
+		
+		counter.textContent = messages;			//update the html counter
+
+
+	}
+	
+	validateCountTitle(); // call the function to display default messages
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Exercises</title>
+</head>
+<body>
+
+
+
+
+<script>
+	
+
+/*	//1. a function to return the last value of an array
+
+function getLastValue(array){
+
+	const lastValue = array[array.length-1];
+	return lastValue;
+}
+
+console.log(getLastValue(['hie', 'hello', 'good']));
+*/
+
+/*	//2. swap the first and last value of an array
+
+function swapFirstAndLastValue(array){
+	let lastValue = array[array.length-1];
+	let firstValue = array[0];
+
+	let swapped = firstValue;
+	firstValue = lastValue;
+	lastValue = swapped;
+
+	 const swappedArr = [firstValue, lastValue]
+
+
+	return swappedArr;
+
+
+}
+
+console.log(swapFirstAndLastValue([10, 1]));
+
+*/
+
+	/*//3. count a for loop and add by 2
+
+	for(let i = 0; i<=10; i+=2){
+		console.log(i)
+	}
+
+	//4. count a for loop from 20 and count by3
+
+	for(let i = 20; i>=0; i-=3){
+		console.log(i)
+	}
+	*/
+
+	/*// 5. //3. count a while loop and add by 2
+	let i = 0;
+	while(i<=10){
+		console.log(i);
+		i+=2;
+	}
+	*/
+
+	/*// 6. Create a loop that take an array and increase each value by one
+
+	function arrayNumbers(array){
+		for(let i=0; i<array.length; i++){
+		array[i] = array[i]+1;
+	}
+
+	return array;
+
+	}
+	console.log(arrayNumbers([3, 4, 5, 5]));
+	*/
+
+	/*// 7. Create a function that take and array and a number and increase each number in the array by the number itself
+
+	function arrayNumbers(array, num){
+		for(let i = 0; i < array.length; i++){
+		array[i] = array[i] + num;
+	}
+
+	return array;
+
+	}
+	console.log(arrayNumbers([3, 4, 5, 5], 2));
+	*/
+
+	/*//8. A function that takes two arrays and add each element of tha array
+
+	function arrayNumbers(array1, array2){
+		for(let i = 0; i < array1.length; i++){
+		array1[i] = array1[i] + array2[i];
+	}
+
+	return array1;
+
+	}
+	console.log(arrayNumbers([3, 4, 5, 5], [1, 2, 3, 4]));
+	*/
+	
+	// 9. A function that return a count of positive numbers in an array
+
+	function countPositive(array){
+		let count = [];
+
+		for(let i = 0; i < array.length; i++){
+			if(array[i] > 0){
+				count = array[i];
+				console.log(count.length);
+				
+			}			
+		}
+		return array;
+	}
+	countPositive([-1, 2, 3, 4]);
+
+
+
+	//10. Write a function to return a multiplication table of a certain number up to ten times
+
+	/*function multiplicationTable(number){
+		for(let i = 0; i <= 10; i++){
+			console.log(`${number} * ${i} = ${number * i}`);
+		}
+		return number;
+
+	}
+
+	multiplicationTable(9);
+	*/
+</script>
+</body>
+</html>

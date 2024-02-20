@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Timer</title>
+</head>
+	<style type="text/css">
+		
+	</style>
+<body>
+
+	<!-- Stop Watch container -->
+
+	<main class="main-container" style="text-align: center; margin-top: 100px;">
+		<div class="input-container" style="margin-bottom: 20px;">
+			<input type="number" class="input-hours" min="0" max="23" placeholder="Hours">
+			<input type="number" class="input-minutes" min="0" max="60" placeholder="Minutes">
+			<input type="number" class="input-seconds" min="0" max="60" placeholder="Seconds">
+			<button class="start-button">Start</button>
+		</div>
+		<div class="time-container" style="margin-bottom: 20px;">
+			<div class="container">
+				<span class="count-hours">00</span>
+				<span class="count-minutes">00</span>
+				<span class="count-seconds">00</span>
+			</div>
+		</div>
+		<div class="buttons">
+			<button class="play-button">Play</button>
+			<button class="reset-button">Reset</button>
+		</div>
+	</main>
+
+
+
+
+	<script type="text/javascript">
+		
+
+		// variables
+		let inputHoursEl = document.querySelector('.input-hours');
+		let inputMinutesEl = document.querySelector('.input-minutes');
+		let inputSecondsEl = document.querySelector('.input-seconds');
+
+		let startButtonEl = document.querySelector('.start-button');
+
+		let countHoursEl = document.querySelector('.count-hours');
+		let countMinutesEl = document.querySelector('.count-minutes');
+		let countSecondsEl = document.querySelector('.count-seconds');
+
+		let playButtonEl = document.querySelector('.play-button');
+		let resetButtonEl = document.querySelector('.reset-button');
+
+
+		// Take the input values and save them in a variable
+
+		
+		// Add the input values to the DOM after clicking the start button;
+		startButtonEl.addEventListener('click', () => {
+			let hours = inputHoursEl.value;
+			let minutes = inputMinutesEl.value;
+			let seconds = inputSecondsEl.value;
+
+			// add zero
+			hours = addZero(hours);
+			minutes = addZero(minutes);
+			seconds = addZero(seconds)
+
+			countHoursEl.textContent = hours;
+			countMinutesEl.textContent = minutes;
+			countSecondsEl.textContent = seconds;
+
+
+			// reset
+			inputHoursEl.value = '';
+			inputMinutesEl.value = '';
+			inputSecondsEl.value = '';
+		});
+
+		let isCounting = false;
+		let intervalId;
+	    
+
+		// Start the watch button clicked
+		playButtonEl.addEventListener('click', () => {
+			let hrs = countHoursEl.innerText,
+				mins = countMinutesEl.innerText,
+				secs = countSecondsEl.innerText;
+			if(!isCounting){
+				intervalId = setInterval(function(){
+					if(secs > 0 && secs <= 60){
+
+						secs --;
+
+					}else if (secs === 0 && mins > 0){
+						secs = 59;
+						mins -- ;
+					}else if (hrs > 0 && mins === 0 || secs >= 0){
+						secs = 59;
+						mins = 59;
+						hrs --;
+					}else{
+						mins = 0;
+						secs = 0;
+						hrs = 0;
+					}			
+
+
+
+					countMinutesEl.innerText = mins;
+					countSecondsEl.innerText = secs;
+					countHoursEl.innerText = hrs;
+					playButtonEl.innerHTML = 'Pause';
+					
+				}, 1000);
+
+				isCounting = true;
+
+			}else{
+				clearInterval(intervalId);
+				isCounting = false;
+				playButtonEl.innerHTML = 'Play';
+
+			}
+
+
+		});
+
+
+		// reset watch button clicked
+		resetButtonEl.addEventListener('click', () => {
+
+			clearInterval(intervalId);
+			isPlaying = false;
+			
+		});
+
+		// Add zero function when the numbers are less than 10
+
+		function addZero(zero){
+			if(zero >= 0 && zero < 10){
+				zero = '0' + zero;
+			}
+
+			return zero;
+		}
+
+		// Watch settings
+
+	</script>
+</body>
+</html>

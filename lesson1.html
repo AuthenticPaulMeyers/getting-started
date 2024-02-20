@@ -10,7 +10,8 @@
 	<!-- <p>Rock Paper Scissors</p>
 	<button
 	onclick="
-
+		
+		//Rock paper Scissors Game
 		const randomNumber = Math.random(); //save a rondom number
 
 		// create a variable to save the computer move
@@ -351,6 +352,216 @@
 	*/
 
 	
+
+// FUNCTIONS : They let the programmer re-use the code multiple times without repeating the code
+
+	// a. A function to display HELLO *name* in the console
+
+	//Declaration of the function
+	/*function greet(name){
+		console.log(`Hello ${name}`);
+	}
+
+	// function call two times;
+	greet('Flora');
+	greet('Paul');
+	*/
+
+	// b. A function to display HELLO *name* with undefined name in the console
+
+	/*
+	//Declaration of the function
+	function greet(name){
+		if(!name){
+			console.log('Hie There!')
+		}else{
+			console.log(`Hello ${name}`);
+		}
+		
+	}
+
+	// function call two times;
+	greet();
+	greet('Paul');
+	*/
+
+
+	/*
+	// c. A function to convert degrees to fareinheit
+	
+	let fareinheight;
+
+	function converToFahreinheit(celcius, C){
+		
+		return (celcius * 9 / 5) + 32 + C;
+		
+	}
+
+	console.log(converToFahreinheit(25, 'F'));
+
+	// d. A function to convert fareinheight to Celcius
+	let celcius;
+	
+	function converToCelcius(fahreinheit, F){
+		
+		return (fahreinheit - 32 ) * 5 / 9 + F;
+		
+	}
+
+	console.log(converToCelcius(86, 'C'));
+	*/
+
+	/*
+	// OBJECTS: Groups multiple values together
+	//objects can store other objects in it
+	//objects can also be used to store functions inside it
+
+	const student = {
+		id: 'EBS/17/SS/051',
+		firstName: 'Paul',
+		lastName: 'Mkundika',
+		gender: 'Male',
+		//an example of another object inside the object
+		numbers: {
+			tnm: '0883445438',
+			airtel: '0995389346'
+		},
+		status: 'married',
+
+		// an example of a function inside an object
+		func: function displaySChool(){
+			console.log('MUBAS');
+		}
+
+	};
+
+	console.log(student);// this will display an object
+	console.log(student.numbers);//will display the student number from the object
+
+	delete student.status; // this will delete the status property from the object;
+	console.log(student);
+
+	student.age = 29; // this will add the age property into the object
+	console.log(student);
+
+
+	// calling a function inside an object
+	student.func();
+	*/
+
+	// Built-in functions
+	// JSON and localStorage
+
+	// No. 1 JSON: JavaScript Object Notation
+	// The difference between objects and JSON is in the syntax; JSON uses double quotes in all properties and values and does not support single quotes
+	// Another difference is that JSON does not accept functions as a value to a property
+	// JSON syntax can be used and understood by other programming languages while objects can only be used within the JS code
+	// JSON can be used on a separate JSON file other than objects
+
+
+	// JSON in-built function helps to convert the javascript object into a JSON file that can be used by other languages
+	// JSON in-built function: helps convert back and forth the Js object and JSON
+	// 1. JSON.stringify()   2. JSON.parse()
+
+	/*
+		- JSON.stringify() is a function that helps convert the JS object into a JSON and can be used by other computers or files
+		- JSON.stringify() converts the object properties and values into a string with double quotes because JSON keeps properties and values in string format
+		- The converted files can be saved into local storage and can used later or transfered
+
+
+		For example;
+	*/
+	/* 
+	const student = {
+		id: 'EBS/17/SS/051',
+		firstName: 'Paul',
+		lastName: 'Mkundika',
+		gender: 'Male',
+		numbers: {
+			tnm: '0883445438',
+			airtel: '0995389346'
+		},
+
+	};
+
+
+	console.log(JSON.stringify(student)); //this will convert the object into JSON data in a string format
+
+	// the JSON data can also be converted back to an object using JSON.parse() function
+	const convertJSON = JSON.stringify(student);
+
+	const ConvertObject = JSON.parse(convertJSON); // this will convert back to object
+
+	console.log(ConvertObject);
+
+	*/
+
+	// 2. localStorage object
+	/*
+		- This is another built-in function that helps to save variables into the local storage so that data should be stored despite refreshing the page
+		- localStorage only saves data in a s tring format so object must be convert to strings when saving to localSorage using the JSON.stringify() method
+		- To save an item into the local storage, use localStorage.setItem(*put a message tag of the item and the item to be saved in here*)
+		- To access the saved item use localStorage.getItem(*put the message tag in here to access the saved item*)
+
+		For example;
+	*/
+
+	// const name = {
+
+	// 	firstName: 'paul',
+	// 	lastName: 'Mkundika'
+	// };
+
+	// console.log(localStorage.setItem('Name', JSON.stringify(name)));// saving the objects
+
+	// const objectFile = JSON.parse(localStorage.getItem('Name'));//accessing the objects
+	// console.log(objectFile);
+
+	// OBJECTS FURTHER EXAMPLES;
+
+	/*
+		const product1 = {
+			name: 'Basketball',
+			price: 2095
+		};
+
+		const product2 = {
+			name: 'Socks',
+			price: 3421
+		};
+
+		function comparePrice(){
+			if(product1.price === product2.price){
+				return product1;
+			}
+			else{
+				return product2;
+			}
+		}
+
+		console.log(comparePrice())
+	*/
+
+
+	const products = [
+		{
+			pId: 1,
+			name: 'Banana',
+			price: 2343
+		},
+		// {
+		// 	pId: 2,
+		// 	name: 'Apples',
+		// 	price: 2332
+		// }
+	];
+
+	alert(products.pId)
+
+
+
+
+
 
 
 

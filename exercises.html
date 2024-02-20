@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Exercises</title>
+</head>
+
+<style>
+	.notify{
+		transition: 1s all ease;
+	}
+
+</style>
+<body>
+
+	<!-- Display a notification after some time -->
+	<div>
+		<button class="add-to-cart-btn">Add to cart</button>
+		<div class="notify"></div>
+	</div>
+
+	<!-- start and stop a counter interval -->
+	<div>
+		<span class="counter">0</span><br>
+		<button class="play-btn">Start</button>
+		<button class="reset">Reset</button>
+	</div>
+
+
+		<!-- Press enter to display name -->
+		<p>
+			<input class="input-element" placeholder="Enter name">
+			
+		</p>
+
+
+
+
+	<script type="text/javascript">
+
+		/* ----- Advanced functions ----- */
+
+		/* // 1. a function that passes another function as an arguement
+
+		function runFunction(number){
+			return number(); // will return 10
+		}
+
+		runFunction(function(){
+			console.log(10);
+		})
+
+		//2. set a time out of 3 seconds to execute a function
+		setTimeout(function(){
+			console.log('Flora Mkundika');
+		}, 3000); */
+
+		 // 3. Set timeout to a button notification when clicked
+
+		/* document.querySelector('.add-to-cart-btn').addEventListener('click', () => {
+
+			if(document.querySelector('.notify').innerHTML === ''){
+				document.querySelector('.add-to-cart-btn').innerHTML = 'Loading...'
+
+				setTimeout(function(){
+					document.querySelector('.add-to-cart-btn').innerHTML = 'Add to cart'
+					document.querySelector('.notify').innerHTML = 'Added to cart!';
+					}, 2000)
+				setTimeout(function(){
+					document.querySelector('.notify').innerHTML = '';
+				}, 5000) // disppear after 3 seconds
+
+			} else{
+				document.querySelector('.add-to-cart-btn').innerHTML = 'Loading...'
+
+				setTimeout(function(){
+					document.querySelector('.add-to-cart-btn').innerHTML = 'Add to cart'
+					document.querySelector('.notify').innerHTML = 'Removed from cart!';
+
+					}, 2000)
+
+				setTimeout(function(){
+					document.querySelector('.notify').innerHTML = '';
+				}, 5000) // disppear after 3 seconds
+			}
+		});
+	*/
+		/*
+		// 4. Start and stop an interval
+
+		let counter = document.querySelector('.counter');
+		let playBtn = document.querySelector('.play-btn');
+		let resetBtn = document.querySelector('.reset')
+		let isPlaying = false;
+		let intervalID;
+		counter.innerHTML = 0;
+
+		playBtn.addEventListener('click', () => {
+
+			if(!isPlaying){
+				intervalID = setInterval(function(){
+					counter.innerHTML ++;
+				}, 1000);
+				isPlaying = true;
+			} else{ 
+				clearInterval(intervalID);
+				isPlaying = false;
+			}
+		});
+
+		resetBtn.addEventListener('click', () => {
+			counter.innerHTML = 0;
+			isPlaying = true;
+		});
+
+
+		*/
+		// 4. using a forEach method to display the names in an array
+
+		/*
+		const names = ["Paul", "Fora", "James", "Aubrey"];
+
+		names.forEach(name => {
+			console.log(name)
+		});
+
+		console.log('');
+
+		 for(let i = 0; i < names.length; i++){
+		 	if(names[i] === 'James'){
+		 		continue;
+		 	}
+		 	console.log(names[i])
+		 }
+		 */
+
+		 // count number of positive numbers
+
+		 const numbers = [1, 2, 4, -5, -6];
+		 const newArr = [];
+
+
+		 numbers.forEach((number, index) => {
+		 	if(number > 0){
+		 		newArr.push(number);
+		 		console.log(newArr.length)
+
+		 	}else{
+		 		return false;
+		 	}
+
+		 });
+		 
+
+
+		/* // Adding events to the keys on the keyboard
+
+		document.body.addEventListener('keydown', () => {
+			console.log(event.key);
+		});
+		*/
+
+
+		/*
+		let inputElement = document.querySelector('.input-element');
+
+
+		inputElement.addEventListener('keydown', (event) => {
+			if(event.key === 'Enter'){
+				alert(`Hello ${inputElement.value}`);
+			}else if(event.key === 'Escape'){
+				inputElement.value = '';
+			}
+		})
+		*/
+
+		/*
+		// Array filter
+
+		// 1. filter the array to return positive even numbers
+		const numbers = [1, 2, -3, -4, 5, 8, 9] 
+		console.log(numbers);
+
+		console.log(numbers.filter((value) => {
+			if(value > 0 && value % 2 === 0){
+				return true;
+			}else{
+				return false;
+			}
+		}));
+
+		// 2. Filter positive numbers
+
+		console.log(
+			numbers.filter((value) => {
+				if(value > 0){
+					return true;
+				}else {
+					return false;
+				}
+			})
+		);
+
+
+		// 3. filter products array
+
+		const products = ['Shoes', 'Bags', 'Suit', 'Biscuits']
+
+		console.log(
+				products.filter((product, index) =>{
+				if(product !== 'Suit'){
+					return true;
+				}else{
+					return false;
+				}
+			})
+
+		)
+
+
+		// 4a. Sort an array in ascending order
+		let array = [2, 8, 89, 7, 8];
+
+		let sortedArray = array.sort(function(a, b){return a - b})
+		console.log(`An array in ascending order [${sortedArray}]`);
+
+		// 4b. Sort an array in descending order
+
+		sortedArray = array.sort(function(a, b){return b - a})
+		console.log(`An array in descending order [${sortedArray}]`);
+
+
+		// 5a. display the lowest number in an array
+
+		array.sort(function(a, b){return a - b});
+		console.log(`Lowest number ${array[0]}`)
+
+		// 5b. display the highest number in an array
+
+		array.sort(function(a, b){return b - a});
+		console.log(`Lowest highest ${array[0]}`)
+		*/
+
+
+		// An arrow function to multiply two numbers
+		/*
+		const multiply = (a, b) => {
+			return a * b
+		};
+
+		console.log(multiply(12, 3));
+		*/
+
+
+
+		
+
+
+	</script>
+</body>
+</html>
