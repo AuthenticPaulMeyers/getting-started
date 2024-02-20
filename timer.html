@@ -6,29 +6,110 @@
 	<title>Timer</title>
 </head>
 	<style type="text/css">
-		
+		body{
+			outline: 0; border: 0;
+			font-family: Poppins, arial;
+			background: #f4f4f4;
+			color: #fff;
+			text-align: center;
+			padding-top: 20px;
+		}
+
+		.main-container{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+
+		.input-container{
+			margin-bottom: 20px;
+			width: auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: .input-seconds;
+			border-radius: 25px;
+			padding: 10px 15px;
+			flex-wrap: wrap;
+
+
+		}
+		.input-hours,
+		.input-minutes,
+		.input-seconds{
+			width: 68px;
+			padding: 8px;
+			font-size: 12px;
+			color: #000000;
+			border: none;
+			outline: none;
+			margin-left: 10px;
+			background: none;
+		}
+
+
+		.btn{
+			background: rgba(19, 19, 19) ;
+			color: #ffffff;
+			font-size: 13px;
+			padding: 8px 18px;
+			border: none;
+			outline: none;
+			margin-left: 10px;
+			border-radius: 25px;
+			width: 70px;
+		}
+
+		.time-container{
+			background: #f4f4f4;
+			border: none;
+			outline: none;
+			padding: 10px;
+			width: auto;
+			height: auto;
+			margin-top: 20px;
+			box-shadow: 0 1px 15px 1px rgba(19, 19, 19, 0.1);
+			margin-bottom: 20px;
+
+		}
+
+		.time-container .container{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 5rem;
+			color: #000000;
+			width: 350px;
+		}
+
+		.time-container .container span{
+			width: 120px;
+		}
+
+
 	</style>
 <body>
 
 	<!-- Stop Watch container -->
 
-	<main class="main-container" style="text-align: center; margin-top: 100px;">
-		<div class="input-container" style="margin-bottom: 20px;">
+	<main class="main-container">
+		<div class="input-container">
 			<input type="number" class="input-hours" min="0" max="23" placeholder="Hours">
 			<input type="number" class="input-minutes" min="0" max="60" placeholder="Minutes">
 			<input type="number" class="input-seconds" min="0" max="60" placeholder="Seconds">
-			<button class="start-button">Start</button>
+			<button class="start-button btn">Start</button>
 		</div>
-		<div class="time-container" style="margin-bottom: 20px;">
+		<div class="time-container">
 			<div class="container">
-				<span class="count-hours">00</span>
-				<span class="count-minutes">00</span>
+				<span class="count-hours">00</span>:
+				<span class="count-minutes">00</span>:
 				<span class="count-seconds">00</span>
 			</div>
 		</div>
 		<div class="buttons">
-			<button class="play-button">Play</button>
-			<button class="reset-button">Reset</button>
+			<button class="play-button btn">Play</button>
+			<button class="reset-button btn">Reset</button>
 		</div>
 	</main>
 
@@ -55,12 +136,15 @@
 
 		// Take the input values and save them in a variable
 
-		
+		let minutes = 0,
+			hours = 0,
+			seconds = 0;
+
 		// Add the input values to the DOM after clicking the start button;
 		startButtonEl.addEventListener('click', () => {
-			let hours = inputHoursEl.value;
-			let minutes = inputMinutesEl.value;
-			let seconds = inputSecondsEl.value;
+			 hours = inputHoursEl.value;
+			 minutes = inputMinutesEl.value;
+			 seconds = inputSecondsEl.value;
 
 			// add zero
 			hours = addZero(hours);
@@ -71,8 +155,7 @@
 			countMinutesEl.textContent = minutes;
 			countSecondsEl.textContent = seconds;
 
-
-			// reset
+			// reset input
 			inputHoursEl.value = '';
 			inputMinutesEl.value = '';
 			inputSecondsEl.value = '';
@@ -80,50 +163,52 @@
 
 		let isCounting = false;
 		let intervalId;
-	    
 
 		// Start the watch button clicked
 		playButtonEl.addEventListener('click', () => {
-			let hrs = countHoursEl.innerText,
-				mins = countMinutesEl.innerText,
-				secs = countSecondsEl.innerText;
+
+			seconds = Number(seconds);
+			minutes = Number(minutes);
+			hours = Number(hours);
 			if(!isCounting){
 				intervalId = setInterval(function(){
-					if(secs > 0 && secs <= 60){
+					if (hours === 0 && (minutes === 0 && seconds === 0))	{
+						hours = 0;
+						minutes = 0;
+						seconds = 0;
 
-						secs --;
+					} else if(seconds > 0 && seconds <= 60){
 
-					}else if (secs === 0 && mins > 0){
-						secs = 59;
-						mins -- ;
-					}else if (hrs > 0 && mins === 0 || secs >= 0){
-						secs = 59;
-						mins = 59;
-						hrs --;
-					}else{
-						mins = 0;
-						secs = 0;
-						hrs = 0;
-					}			
+						seconds --;
 
+					}else if (minutes > 0 && seconds === 0){
+						seconds = 59;
+						minutes -- ;
+						
 
+					}else if (hours > 0 && minutes === 0 || seconds >= 0){
+						seconds = 59;
+						minutes = 59;
+						hours --;
+					}
 
-					countMinutesEl.innerText = mins;
-					countSecondsEl.innerText = secs;
-					countHoursEl.innerText = hrs;
+					countSecondsEl.textContent = seconds;
+					countMinutesEl.textContent = minutes;
+					countHoursEl.textContent = hours;
+
 					playButtonEl.innerHTML = 'Pause';
-					
+
 				}, 1000);
 
 				isCounting = true;
 
 			}else{
+
 				clearInterval(intervalId);
 				isCounting = false;
 				playButtonEl.innerHTML = 'Play';
 
 			}
-
 
 		});
 
@@ -131,9 +216,21 @@
 		// reset watch button clicked
 		resetButtonEl.addEventListener('click', () => {
 
+			hours = 0;
+			minutes = 0;
+			seconds = 0;
+
+			// add zero
+			hours = addZero(hours);
+			minutes = addZero(minutes);
+			seconds = addZero(seconds);
+
+			countMinutesEl.innerText = minutes;
+			countSecondsEl.innerText = seconds;
+			countHoursEl.innerText = hours;
+
 			clearInterval(intervalId);
-			isPlaying = false;
-			
+			isPlaying = false;	
 		});
 
 		// Add zero function when the numbers are less than 10
