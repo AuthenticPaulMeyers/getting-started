@@ -38,14 +38,15 @@
 		.input-hours,
 		.input-minutes,
 		.input-seconds{
-			width: 68px;
-			padding: 8px;
+			width: 65px;
+			padding: 8px 12px;
 			font-size: 12px;
 			color: #000000;
-			border: none;
+			background: none;
+			border: 1px solid rgba(19, 19, 19, 0.5);
 			outline: none;
 			margin-left: 10px;
-			background: none;
+			border-radius: 25px;
 		}
 
 
@@ -59,6 +60,7 @@
 			margin-left: 10px;
 			border-radius: 25px;
 			width: 70px;
+			transition: .2s ease all;
 		}
 
 		.time-container{
@@ -70,7 +72,7 @@
 			height: auto;
 			margin-top: 20px;
 			box-shadow: 0 1px 15px 1px rgba(19, 19, 19, 0.1);
-			margin-bottom: 20px;
+			margin-bottom: 40px;
 
 		}
 
@@ -125,7 +127,7 @@
 		let inputSecondsEl = document.querySelector('.input-seconds');
 
 		let startButtonEl = document.querySelector('.start-button');
-
+		
 		let countHoursEl = document.querySelector('.count-hours');
 		let countMinutesEl = document.querySelector('.count-minutes');
 		let countSecondsEl = document.querySelector('.count-seconds');
@@ -133,6 +135,31 @@
 		let playButtonEl = document.querySelector('.play-button');
 		let resetButtonEl = document.querySelector('.reset-button');
 
+		// disable  the buttons by default
+		startButtonEl.disabled = true; 
+		resetButtonEl.disabled = true;
+		playButtonEl.disabled = true;
+
+		// change styles 
+
+		if(startButtonEl.disabled){
+			startButtonEl.style.background = '#cccccc';
+			playButtonEl.style.background = '#cccccc';
+			resetButtonEl.style.background = '#cccccc';
+
+			startButtonEl.disabled = true;
+		}
+
+		document.querySelectorAll('input').forEach(input =>{
+			input.addEventListener('keyup', () =>{
+				startButtonEl.disabled = false;
+				resetButtonEl.disabled = false;
+				playButtonEl.disabled = false;
+				startButtonEl.style.background = 'rgb(19, 19, 19)';
+				playButtonEl.style.background = 'rgb(19, 19, 19)';
+				resetButtonEl.style.background = 'rgb(19, 19, 19)';
+			});
+		})
 
 		// Take the input values and save them in a variable
 
@@ -159,6 +186,9 @@
 			inputHoursEl.value = '';
 			inputMinutesEl.value = '';
 			inputSecondsEl.value = '';
+
+			startButtonEl.disabled = true;
+			startButtonEl.style.background = '#cccccc';
 		});
 
 		let isCounting = false;
@@ -231,6 +261,12 @@
 
 			clearInterval(intervalId);
 			isPlaying = false;	
+
+			resetButtonEl.disabled = true;
+			playButtonEl.disabled = true;
+			playButtonEl.style.background = '#cccccc';
+			resetButtonEl.style.background = '#cccccc';
+
 		});
 
 		// Add zero function when the numbers are less than 10
